@@ -20,7 +20,8 @@
 				<!-- Intro -->
 					<div id="intro">
 						<h1>Paul Etesam Analyst Portfolio</h1>
-<p style="text-align: left">Data Analyst with 5+ years’ experience in design, development of complex reports, dashboards with strong analytical ability to solve complex problems. Skill in SQL, Power BI, Power Query, Advanced Excel </p>
+<p style="text-align: left"> <span> <i class='no-italics'> Data Analyst with 5+ years’ experience in design, development of complex reports, dashboards with strong analytical ability to solve complex problems. Skill in SQL, Power BI, Power Query, Advanced Excel </i>
+</span> </p>
 						<ul class="actions">
 							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 						</ul>
@@ -55,16 +56,35 @@
 									<p style="text-align: left"><h2><a  href="#">Hotel Revenue Dashboard 
 									</a></h2></p>
 									
-									<p style="text-align: left">For this A SQL Power BI Project, I uploaded Excel sheets to  MS SQL, and then created a new HotelProject Database, connected it to Power BI to answer stakeholders following questions :
+									<p style="text-align: left"> <span>  <i class='no-italics'>For this A SQL Power BI Project, I uploaded Excel sheets to  MS SQL, and then created a new HotelProject Database, connected it to Power BI to answer stakeholders following questions :
 											<br />
 										    Is Hotel revenue increasing by year? <br />
 											Is there a trend on quests personal cars and parking lot size?<br />
 										    Explore seasonality?<br /> </p>
+										</i>
+									</span>
+											
 								</header>
 								<a href="#" class="image main"><img src="images/hotel.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">View Project</a></li>
-								</ul>
+								<p style="text-align: left"><b><span><i class='no-italics'> Here is the SQL code for this project:</i>
+								</span></b>
+									<br />
+									with hotels as (
+select * from dbo.['2018']
+union
+select * from dbo.['2019']
+union
+select * from dbo.['2020'])
+
+
+Select * from hotels as h
+left join dbo.market_segment as m
+on h.market_segment = m.market_segment
+left join dbo.meal_cost as c
+on c.meal = h.meal
+									<br /> </p>
+								
+								
 							</article>
 
 						<!-- Posts -->
@@ -75,12 +95,50 @@
 										<h2><a href="#">Absenteeism Analytics<br />
 										</a></h2>
 									</header>
-									<p>In this project we have used HR dataset about absenteeism and health. I connected to Microsoft SQL Server, created a new database, uploaded Data to the Database, wrote SQL join queries, connected to Power BI, and created Dashboard per requirement.</p>
+									<p style="text-align: left"> <span> <i class='no-italics'>  In this project we have used HR dataset about absenteeism and health. I connected to Microsoft SQL Server, created a new database, 
+									 uploaded Data to the Database, wrote SQL join queries, connected to Power BI, and created Dashboard per requirement.</p>
 									<a href="#" class="image fit"><img src="images/absentjpg.jpg" alt="" /></a>
+									<p style="text-align: left"><b>Here is the SQL code for this project:</b>
+										<br />
+										
+											
+										 
+select   
+a.id,
+c.Reason,
+case when Month_of_absence in (12,1,2) then 'Winter'
+     when Month_of_absence in (3,4,5) then 'Spring'
+	 when Month_of_absence in (6,7,8) then 'Summer'
+	 when Month_of_absence in (9,10,11) then 'Fall'
+	 else 'Unknown'
+	 end as 'Season Name',
+case when Body_mass_index &lt; 18.5 then 'Under Weight'
+     when Body_mass_index between  18.5 and 25 then 'Healthy'
+	 when Body_mass_index between  25 and 30 then 'Over Weight'
+	 when Body_mass_index between  18.5 and 24.9 then 'Obese'
+	 else 'Unknown'
+	 end as 'BMI Category',
+Month_of_absence,
+Day_of_the_week,
+Transportation_expense,
+Education,
+Son,
+Social_drinker,
+Social_smoker,
+Pet,Disciplinary_failure,
+Age,
+Work_load_Average_day,
+Absenteeism_time_in_hours
+from dbo.Absenteeism a
+left join dbo.compensation b
+on b.ID = a.ID
+left join dbo.Reasons c
+on a.Reason_for_absence = c.Number;	
+
+</i>
+</span>
+ <br /> </p>
 									
-									<ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul>
 								</article>
 								
 							</section>
@@ -92,12 +150,7 @@
 				<!-- Footer -->
 				
 						<section class="split contact">
-							<section class="alt">
-								<p>Las Vegas, Nevada</p>
-							</section>
-							<section>
 								
-							</section>
 							<section>
 								<h3>Email</h3>
 								<p> pauletesam@outlook.com</p>
